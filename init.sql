@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS UserPreferences (
     LanguageCode VARCHAR(100),
     PreferredCommunication INT,
     UserId INT,
-    FOREIGN KEY (UserId) REFERENCES Users(ID)
+    FOREIGN KEY (UserId) REFERENCES Users(ID) ON DELETE CASCADE
 );
 
 -- ALTER TABLE users ADD UNIQUE (name)

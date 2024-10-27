@@ -8,12 +8,23 @@ const UserService = {
   createUser: async (name, email) => {
     return await UserModel.createUser(name, email);
   },
+  deleteUser: async (id) => {
+    return await UserModel.deleteUser(id);
+  },
   getUserPreferences: async (userId) => {
     return await UserPreferencesModel.getUserPreferences(userId);
   },
-  createUserPreference: async (userId, languageCode, preferredCommunication) => {
-    return await UserPreferencesModel.createUserPreference(userId, languageCode, preferredCommunication);
-  }
+  createUserPreference: async (
+    userId,
+    languageCode,
+    preferredCommunication
+  ) => {
+    return await UserPreferencesModel.createUserPreference(
+      userId,
+      languageCode,
+      preferredCommunication
+    );
+  },
 };
 
 module.exports = UserService;
