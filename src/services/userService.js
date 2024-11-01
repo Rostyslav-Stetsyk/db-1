@@ -1,3 +1,4 @@
+const { createStudent } = require('../models/studentModel');
 const UserModel = require('../models/userModel');
 const UserPreferencesModel = require('../models/userPreferencesModel');
 
@@ -23,6 +24,15 @@ const UserService = {
       userId,
       languageCode,
       preferredCommunication
+    );
+  },
+
+  createStudent: async (userId, departament, yearStudy, dateOfGraduation) => {
+    return await createStudent(
+      userId,
+      departament,
+      yearStudy,
+      dateOfGraduation
     );
   },
 };

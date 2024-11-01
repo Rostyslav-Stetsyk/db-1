@@ -57,4 +57,20 @@ router.post('/:userId/preferences', async (req, res) => {
   }
 });
 
+router.post('/:userId/student', async (req, res) => {
+  const { userId } = req.params;
+  const { departament, yearStudy, dateOfGraduation } = req.body;
+  try {
+    const newStudent = await UserService.createStudent(
+      userId,
+      departament,
+      yearStudy,
+      dateOfGraduation
+    );
+    res.json(newStudent);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
