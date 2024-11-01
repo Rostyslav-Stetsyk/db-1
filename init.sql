@@ -14,15 +14,28 @@ CREATE TABLE
         FOREIGN KEY (UserId) REFERENCES Users (ID) ON DELETE CASCADE
     );
 
-create table
-    if not exists Students (
-        ID UUID PRIMARY KEY DEFAULT gen_random_uuid (),
-        UserID UUID,
-        foreign key (UserId) references Users (ID) on delete cascade,
-        Departament varchar(100),
-        YearStudy int,
-        DateOfGraduation date
-    );
+CREATE TABLE IF NOT EXISTS Students (
+    ID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    UserID UUID,
+    Departament VARCHAR(100),
+    YearStudy INT,
+    DateOfGraduation DATE,
+    FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE
+);
+
+CREATE OR REPLACE PROCEDURE add_student(
+    UserID UUID, 
+    Departament VARCHAR(100), 
+    YearStudy INT, 
+    DateOfGraduation DATE
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO students (UserID, Departament, YearStudy, DateOfGraduation) 
+    VALUES (UserID, Departament, YearStudy, DateOfGraduation);
+END;
+$$;
 
 -- ALTER TABLE users ADD UNIQUE (name)
 -- ALTER TABLE users ALTER COLUMN name SET NOT NULL;`
