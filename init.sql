@@ -30,7 +30,8 @@ CREATE OR REPLACE PROCEDURE add_student(
     DateOfGraduation DATE
 )
 LANGUAGE plpgsql
-AS $$
+AS 
+$$
 BEGIN
     INSERT INTO students (UserID, Departament, YearStudy, DateOfGraduation) 
     VALUES (UserID, Departament, YearStudy, DateOfGraduation);
